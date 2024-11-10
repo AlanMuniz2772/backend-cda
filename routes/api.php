@@ -13,5 +13,6 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::get('/reportes/ventas-por-dia', [ReportController::class, 'ventasPorDia']);
 Route::get('/reportes/productos-mas-vendidos', [ReportController::class, 'productosMasVendidos']);
+Route::get('/reportes/ventas-por-mes', [ReportController::class, 'ventasPorMes']);
 Route::get('/data/productos', [DataController::class, 'productos']);
 

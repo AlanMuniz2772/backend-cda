@@ -20,5 +20,17 @@ class DataController extends Controller
         return response()->json(['productos' => $productos]);
     }
 
+    public function inventarios()
+    {
+        // Consulta para obtener los inventarios
+        $inventarios = DB::table('inventarios')
+            ->select(
+                'inventarios.id',
+                'inventarios.fecha',
+            )
+            ->get();
+
+        return response()->json(['inventarios' => $inventarios]);
+    }
     
 }

@@ -26,3 +26,7 @@ Route::get('/data/insumos-productos', [DataController::class, 'insumosProductos'
 Route::post('/insert/productos', [ProductoController::class, 'store']);
 Route::post('/insert/insumos', [InsumoController::class, 'store']);
 Route::post('/insert/insumos-productos', [InsumoProductoController::class, 'store']);
+
+
+//puts
+Route::put('/update/insumos/{id}', [InsumoController::class, 'update']);

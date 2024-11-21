@@ -15,6 +15,7 @@ class Insumo extends Model
         'nombre',
         'costo',
         'cantidad_tienda',
+        'cantidad_captura',
         'unidad_medida',
         'is_available',
     ];

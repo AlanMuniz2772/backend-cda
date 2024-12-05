@@ -21,6 +21,9 @@ Route::get('/data/productos', [DataController::class, 'productos']);
 Route::get('/data/inventarios', [DataController::class, 'inventarios']);
 Route::get('/data/insumos', [DataController::class, 'insumos']);
 Route::get('/data/insumos-productos', [DataController::class, 'insumosProductos']);
+Route::get('/data/users', [DataController::class, 'users']);
+Route::get('/data/orden-venta', [DataController::class, 'ordenVenta']);
+
 
 //posts
 Route::post('/insert/productos', [ProductoController::class, 'store']);
@@ -30,3 +33,9 @@ Route::post('/insert/insumos-productos', [InsumoProductoController::class, 'stor
 
 //puts
 Route::put('/update/insumos/{id}', [InsumoController::class, 'update']);
+Route::put('/update/users/{id}', [UserController::class, 'update']);
+Route::put('/update/ordenes/{id}', [OrdenController::class, 'update']);
+
+//deletes
+Route::delete('/delete/users/{id}', [UserController::class, 'destroy']);
+Route::delete('/delete/productos/{id}', [ProductoController::class, 'destroy']);

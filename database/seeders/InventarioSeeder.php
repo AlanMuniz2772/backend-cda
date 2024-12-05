@@ -12,7 +12,8 @@ class InventarioSeeder extends Seeder
         DB::table('inventarios')->insert([
             ['id_tienda' => 1, 'fecha' => now()->subDays(2)],
             ['id_tienda' => 1, 'fecha' => now()->subDays(1)],
-            ['id_tienda' => 1, 'fecha' => now()],
+            ['id_tienda' => 1, 'fecha' => now()->subDays(3)],
+            ['id_tienda' => 1, 'fecha' => now()->subDays(4)],
         ]);
     }
 }

@@ -42,4 +42,15 @@ class ProductoController extends Controller
             'id' => $producto->id,
         ], 201);
     }
+
+    public function destroy($id)
+    {
+        $producto = Producto::find($id);
+        if (!$producto) {
+            return response()->json(['message' => 'Producto no encontrado'], 404);
+        }
+
+        $producto->delete();
+        return response()->json(['message' => 'Producto deleted successfully'], 200);
+    }
 }

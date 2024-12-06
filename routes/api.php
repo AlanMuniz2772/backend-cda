@@ -7,6 +7,8 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\InsumoProductoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrdenController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
@@ -23,6 +25,7 @@ Route::get('/data/insumos', [DataController::class, 'insumos']);
 Route::get('/data/insumos-productos', [DataController::class, 'insumosProductos']);
 Route::get('/data/users', [DataController::class, 'users']);
 Route::get('/data/orden-venta', [DataController::class, 'ordenVenta']);
+Route::get('/data/orden-cancelada', [DataController::class, 'ordenCancelada']);
 
 
 //posts
@@ -39,3 +42,4 @@ Route::put('/update/ordenes/{id}', [OrdenController::class, 'update']);
 //deletes
 Route::delete('/delete/users/{id}', [UserController::class, 'destroy']);
 Route::delete('/delete/productos/{id}', [ProductoController::class, 'destroy']);
+Route::delete('/delete/insumos/{id}', [InsumoController::class, 'destroy']);

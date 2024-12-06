@@ -88,4 +88,15 @@ class InsumoController extends Controller
             'success' => true,
         ]);
     }
+
+    public function destroy($id)
+    {
+        $insumo = Insumo::find($id);
+        if (!$insumo) {
+            return response()->json(['message' => 'insumo not found'], 404);
+        }
+
+        $insumo->delete();
+        return response()->json(['message' => 'insumo deleted successfully'], 200);
+    }
 }

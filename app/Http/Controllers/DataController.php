@@ -140,7 +140,7 @@ class DataController extends Controller
     }
 
     public function ordenVenta()
-{
+    {
     // Consulta para obtener las órdenes de venta registradas
     $ordenes = DB::table('orden_venta')
         ->join('productos_ordenes', 'orden_venta.id', '=', 'productos_ordenes.id_orden')
@@ -162,7 +162,32 @@ class DataController extends Controller
         ->get();
 
     return response()->json(['ordenes' => $ordenes]);
-}
+    }
+
+    public function ordenCancelada()
+    {
+    // Consulta para obtener las órdenes de venta registradas
+    $ordenes = DB::table('orden_venta')
+        ->join('productos_ordenes', 'orden_venta.id', '=', 'productos_ordenes.id_orden')
+        ->select(
+            'orden_venta.id',
+            DB::raw('TIME(orden_venta.fecha) as hora'),
+            DB::raw("
+                CASE 
+                    WHEN orden_venta.tipo_pago = 1 THEN 'Efectivo'
+                    WHEN orden_venta.tipo_pago = 2 THEN 'Tarjeta de Crédito'
+                    ELSE 'Otro'
+                END as tipo_pago
+            "),
+            DB::raw('SUM(productos_ordenes.precio * productos_ordenes.cantidad_producto) as total')
+        )
+        ->where('orden_venta.is_registered', false) // Filtrar sólo registros con is_registered = true
+        ->groupBy('orden_venta.id', 'orden_venta.fecha', 'orden_venta.tipo_pago') // Agrupar por orden
+        ->orderBy('orden_venta.fecha', 'desc') // Ordenar por fecha más reciente
+        ->get();
+
+    return response()->json(['ordenes' => $ordenes]);
+    }
 
     
 }
